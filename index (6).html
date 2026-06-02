@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KairosDigital — Agence de développement web & mobile. Sites vitrines, applications mobiles, e-commerce. Devis gratuit sous 48h.">
+<meta name="keywords" content="agence web, développement mobile, site vitrine, e-commerce, application mobile, KairosDigital">
+<title>KairosDigital — Développement Web & Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* THEME VARIABLES */
+[data-theme="dark"]{
+  --bg:#0D0B1A;--bg2:#16122B;--bg3:#1F1A38;
+  --tx:#F0EDFF;--tm:#9B94C0;--br:rgba(108,59,255,0.25);
+  --card-bg:#16122B;--card-border:rgba(108,59,255,0.25);
+  --nav-bg:rgba(13,11,26,0.9);
+  --faq-bg:#1F1A38;--faq-border:rgba(108,59,255,0.2);
+  --input-bg:#1F1A38;--comp-bg:#16122B;
+  --shadow:rgba(0,0,0,0.4);
+}
+[data-theme="light"]{
+  --bg:#F5F3FF;--bg2:#FFFFFF;--bg3:#EDE9FF;
+  --tx:#1a1535;--tm:#6B6080;--br:rgba(108,59,255,0.2);
+  --card-bg:#FFFFFF;--card-border:rgba(108,59,255,0.2);
+  --nav-bg:rgba(245,243,255,0.92);
+  --faq-bg:#EDE9FF;--faq-border:rgba(108,59,255,0.15);
+  --input-bg:#EDE9FF;--comp-bg:#FFFFFF;
+  --shadow:rgba(108,59,255,0.1);
+}
+
+:root{
+  --b1:#6C3BFF;--b2:#FF3B8B;--b3:#00E5C3;--b4:#FFB830;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;transition:background .3s,color .3s}
+
+/* PROGRESS BAR */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--b1),var(--b2),var(--b3));width:0%;z-index:9999;transition:width .1s}
+
+/* BACK TO TOP */
+#back-top{position:fixed;bottom:2rem;right:1.5rem;width:42px;height:42px;background:var(--b1);border:none;border-radius:50%;color:white;font-size:1.1rem;cursor:pointer;z-index:500;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(108,59,255,.4)}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{background:var(--b2)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;padding:.85rem 2rem;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:.5px solid var(--br);transition:background .3s}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.5px;text-decoration:none;color:var(--tx)}
+.logo span{color:var(--b1)}.logo em{color:var(--b3);font-style:normal}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:var(--tm);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--tx)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.lang-btn{background:var(--bg3);border:.5px solid var(--br);color:var(--tm);padding:.32rem .7rem;border-radius:100px;font-size:.75rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.lang-btn:hover{border-color:var(--b1);color:var(--tx)}
+.theme-btn{background:var(--bg3);border:.5px solid var(--br);color:var(--tx);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-btn:hover{border-color:var(--b1);background:var(--b1);color:white}
+.nav-cta{background:var(--b1);color:white!important;padding:.42rem 1.1rem;border-radius:100px;font-size:.82rem!important;font-weight:500!important;transition:opacity .2s!important}
+.nav-cta:hover{opacity:.85}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--tx);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:.5px solid var(--br);padding:1rem 2rem;flex-direction:column;gap:.75rem;z-index:199}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--tm);text-decoration:none;font-size:.95rem;font-weight:500;padding:.4rem 0;border-bottom:.5px solid var(--br)}
+.mobile-menu a:last-child{border:none}
+
+/* HERO */
+.hero{padding:5.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.o1{width:500px;height:500px;background:var(--b1);top:-160px;left:-100px;opacity:.28}
+.o2{width:400px;height:400px;background:var(--b2);top:-80px;right:-100px;opacity:.25}
+.o3{width:350px;height:350px;background:var(--b3);bottom:-80px;left:50%;transform:translateX(-50%);opacity:.15}
+.hc{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(108,59,255,.12);border:.5px solid rgba(108,59,255,.4);color:#B09FFF;font-size:.78rem;font-weight:500;padding:.32rem .9rem;border-radius:100px;margin-bottom:1.5rem}
+.badge::before{content:'';width:6px;height:6px;background:var(--b3);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.08;margin-bottom:1.25rem;letter-spacing:-2px}
+.gt{background:linear-gradient(135deg,var(--b1),var(--b2),var(--b3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs{font-size:1.05rem;color:var(--tm);line-height:1.75;margin-bottom:2rem;max-width:540px;margin-left:auto;margin-right:auto}
+.hbtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.bp{background:linear-gradient(135deg,var(--b1),var(--b2));color:white;padding:.9rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;cursor:pointer;border:none;text-decoration:none;transition:transform .2s,opacity .2s;display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif}
+.bp:hover{transform:translateY(-2px);opacity:.92}
+.bs{background:transparent;color:var(--tx);padding:.9rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;cursor:pointer;border:1px solid var(--br);text-decoration:none;transition:border-color .2s,background .2s;display:inline-flex;align-items:center;gap:8px}
+.bs:hover{border-color:var(--b1);background:rgba(108,59,255,.08)}
+.hero-offer{display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,195,.08);border:.5px solid rgba(0,229,195,.3);color:var(--b3);font-size:.8rem;padding:.4rem 1.1rem;border-radius:100px}
+
+/* TECH LOGOS */
+.tech-strip{padding:1.5rem 2rem;border-top:.5px solid var(--br);border-bottom:.5px solid var(--br);overflow:hidden;position:relative}
+.tech-strip::before,.tech-strip::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+.tech-strip::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.tech-strip::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.tech-track{display:flex;gap:2.5rem;align-items:center;animation:scroll-tech 20s linear infinite;width:max-content}
+@keyframes scroll-tech{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tech-track:hover{animation-play-state:paused}
+.tech-item{display:flex;align-items:center;gap:.5rem;color:var(--tm);font-size:.82rem;font-weight:500;white-space:nowrap;padding:.3rem .7rem;border-radius:8px;border:.5px solid var(--br);background:var(--bg2)}
+.tech-item span{font-size:1.1rem}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:0;flex-wrap:wrap;border-bottom:.5px solid var(--br)}
+.stat{text-align:center;padding:1.75rem 2.5rem;border-right:.5px solid var(--br);flex:1;min-width:120px}
+.stat:last-child{border-right:none}
+.sn{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--b3),var(--b1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sl{font-size:.78rem;color:var(--tm);margin-top:3px}
+
+/* SECTION */
+.sec{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.stag{font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--b3);margin-bottom:.65rem}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;letter-spacing:-1px;line-height:1.12;margin-bottom:.9rem}
+.sdesc{color:var(--tm);font-size:.95rem;max-width:480px;line-height:1.75;margin-bottom:2.5rem}
+
+/* SERVICES */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}
+.sc{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:20px;padding:1.75rem;transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:20px;pointer-events:none}
+.sc.cw::before{background:radial-gradient(circle at top left,rgba(108,59,255,.1),transparent 60%)}
+.sc.ca::before{background:radial-gradient(circle at top left,rgba(255,59,139,.1),transparent 60%)}
+.sc.ce::before{background:radial-gradient(circle at top left,rgba(0,229,195,.08),transparent 60%)}
+.sc:hover{border-color:rgba(108,59,255,.5);transform:translateY(-4px)}.sc:hover::before{opacity:1}
+.si{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+.iw{background:rgba(108,59,255,.15)}.ia{background:rgba(255,59,139,.15)}.ie{background:rgba(0,229,195,.15)}
+.sc h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+.sc p{font-size:.83rem;color:var(--tm);line-height:1.65;margin-bottom:1rem}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.t{font-size:.7rem;font-weight:500;padding:2px 9px;border-radius:100px;border:.5px solid}
+.tp{color:#B09FFF;border-color:rgba(176,159,255,.3);background:rgba(108,59,255,.08)}
+.tk{color:#FF8EC4;border-color:rgba(255,142,196,.3);background:rgba(255,59,139,.08)}
+.tt{color:#00E5C3;border-color:rgba(0,229,195,.3);background:rgba(0,229,195,.08)}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.why-card{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:16px;padding:1.5rem;transition:border-color .3s,transform .3s}
+.why-card:hover{border-color:rgba(108,59,255,.5);transform:translateY(-3px)}
+.why-ico{font-size:1.8rem;margin-bottom:.75rem}
+.why-card h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.why-card p{font-size:.8rem;color:var(--tm);line-height:1.6}
+
+/* COMPARATIF */
+.comp-wrap{overflow-x:auto}
+.comp-table{width:100%;border-collapse:collapse;min-width:520px}
+.comp-table th{padding:.85rem 1rem;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;text-align:center;border-bottom:.5px solid var(--br)}
+.comp-table th:first-child{text-align:left}
+.comp-table td{padding:.75rem 1rem;font-size:.82rem;text-align:center;border-bottom:.5px solid var(--br);color:var(--tm)}
+.comp-table td:first-child{text-align:left;color:var(--tx);font-weight:500}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table .us{background:rgba(108,59,255,.07);font-weight:600}
+.comp-table .us td{color:var(--tx)}
+.comp-hl{color:var(--b3);font-size:1.1rem}
+.comp-ok{color:var(--b3)}
+.comp-no{color:var(--tm);opacity:.5}
+.comp-mid{color:var(--b4)}
+.comp-head-us{color:var(--b1)!important}
+
+/* PORTFOLIO */
+.pfilters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.fb{background:var(--bg2);border:.5px solid var(--br);color:var(--tm);padding:.38rem 1rem;border-radius:100px;font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.fb:hover{border-color:var(--b1);color:var(--tx)}.fb.active{background:var(--b1);border-color:var(--b1);color:white}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.pc{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:20px;overflow:hidden;transition:transform .3s,border-color .3s;cursor:pointer}
+.pc:hover{transform:translateY(-5px);border-color:rgba(108,59,255,.55)}
+.pc.hidden{display:none}
+.pthumb{height:155px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ptw{background:linear-gradient(135deg,rgba(108,59,255,.28),rgba(108,59,255,.04))}
+.pta{background:linear-gradient(135deg,rgba(255,59,139,.28),rgba(255,59,139,.04))}
+.pte{background:linear-gradient(135deg,rgba(0,229,195,.25),rgba(0,229,195,.04))}
+.mock{position:absolute;bottom:-8px;width:87%;height:115px;background:var(--bg3);border-radius:9px 9px 0 0;border:.5px solid var(--br);display:flex;flex-direction:column;padding:8px;gap:4px}
+.mb{height:6px;border-radius:4px;background:rgba(255,255,255,.07)}
+.mb.ac{background:var(--b1);width:40%}.mb.md{width:65%}.mb.sh{width:30%}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:3px;flex:1;margin-top:3px}
+.mbl{background:rgba(255,255,255,.05);border-radius:4px}
+.pi{padding:1.1rem 1.25rem 1.25rem}
+.pty{font-size:.68rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--b3);margin-bottom:.3rem}
+.pi h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.pi p{font-size:.78rem;color:var(--tm);line-height:1.55;margin-bottom:.7rem}
+.pr{padding:.45rem .8rem;background:rgba(0,229,195,.07);border:.5px solid rgba(0,229,195,.2);border-radius:7px;font-size:.72rem;color:var(--b3)}
+.demo-btn{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:.85rem;width:100%;background:rgba(108,59,255,.1);border:.5px solid rgba(108,59,255,.3);color:#B09FFF;padding:.52rem;border-radius:9px;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.demo-btn:hover{background:rgba(108,59,255,.2);border-color:var(--b1)}
+
+/* PROCESS */
+.psteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.step{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:16px;padding:1.5rem;text-align:center;transition:border-color .3s,transform .3s}
+.step:hover{border-color:rgba(108,59,255,.5);transform:translateY(-3px)}
+.stepn{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1;margin-bottom:.4rem;opacity:.12}
+.step h4{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:.35rem}
+.step p{font-size:.78rem;color:var(--tm);line-height:1.6}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.tcard{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:20px;padding:1.75rem;position:relative;transition:border-color .3s,transform .3s}
+.tcard:hover{border-color:rgba(108,59,255,.45);transform:translateY(-3px)}
+.tquote{font-size:2.5rem;color:var(--b1);line-height:1;margin-bottom:.75rem;opacity:.6}
+.ttext{font-size:.85rem;color:var(--tm);line-height:1.7;margin-bottom:1.25rem;font-style:italic}
+.tauthor{display:flex;align-items:center;gap:.75rem}
+.tavatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:white;flex-shrink:0}
+.tname{font-size:.85rem;font-weight:600;color:var(--tx)}
+.trole{font-size:.74rem;color:var(--tm)}
+.tstars{color:var(--b4);font-size:.85rem;margin-bottom:.75rem}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:.75rem;max-width:720px}
+.faq-item{background:var(--faq-bg);border:.5px solid var(--faq-border);border-radius:14px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:rgba(108,59,255,.5)}
+.faq-q{padding:1.1rem 1.25rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:500;font-size:.9rem;gap:1rem;transition:color .2s}
+.faq-q:hover{color:var(--b1)}
+.faq-arrow{font-size:.75rem;transition:transform .3s;flex-shrink:0;color:var(--tm)}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--b1)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-item.open .faq-a{max-height:300px;padding:.2rem 1.25rem 1.1rem}
+.faq-a p{font-size:.83rem;color:var(--tm);line-height:1.7}
+
+/* DEVIS */
+.dsec{background:var(--card-bg);border:.5px solid var(--card-border);border-radius:22px;padding:2.5rem;max-width:820px;margin:0 auto;position:relative;overflow:hidden}
+.dsec::before{content:'';position:absolute;top:-80px;right:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(108,59,255,.12),transparent 70%);pointer-events:none}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem}
+.fgrp{display:flex;flex-direction:column;gap:.42rem}
+.fgrp.full{grid-column:1/-1}
+.fgrp label{font-size:.78rem;font-weight:500;color:var(--tm)}
+.fgrp input,.fgrp select,.fgrp textarea{background:var(--input-bg);border:.5px solid var(--br);border-radius:9px;padding:.68rem .9rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:.87rem;transition:border-color .2s;outline:none;width:100%}
+.fgrp input:focus,.fgrp select:focus,.fgrp textarea:focus{border-color:var(--b1)}
+.fgrp select{appearance:none;cursor:pointer}
+.fgrp textarea{resize:vertical;min-height:100px;line-height:1.6}
+.fgrp input::placeholder,.fgrp textarea::placeholder{color:rgba(155,148,192,.45)}
+.scbs{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.cbi{background:var(--input-bg);border:.5px solid var(--br);border-radius:9px;padding:.62rem .85rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;font-size:.82rem;user-select:none}
+.cbi:hover{border-color:rgba(108,59,255,.5)}.cbi.sel{background:rgba(108,59,255,.12);border-color:var(--b1);color:#B09FFF}
+.cd{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--br);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.cbi.sel .cd{background:var(--b1);border-color:var(--b1)}.cd::after{content:'✓';font-size:9px;color:white;opacity:0;transition:opacity .2s}.cbi.sel .cd::after{opacity:1}
+.subrow{display:flex;align-items:center;justify-content:space-between;margin-top:1.75rem;flex-wrap:wrap;gap:1rem}
+.subnote{font-size:.76rem;color:var(--tm);display:flex;align-items:center;gap:5px}
+.subnote::before{content:'🔒';font-size:.72rem}
+.bsub{background:linear-gradient(135deg,var(--b1),var(--b2));color:white;padding:.85rem 2.2rem;border-radius:100px;font-weight:500;font-size:.9rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:transform .2s,opacity .2s;display:flex;align-items:center;gap:7px}
+.bsub:hover{transform:translateY(-2px);opacity:.9}
+.succmsg{display:none;text-align:center;padding:2rem}
+.succico{width:62px;height:62px;background:rgba(0,229,195,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 1rem}
+
+/* FOOTER */
+footer{border-top:.5px solid var(--br);padding:2.5rem 2rem;background:var(--bg2)}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo{display:inline-block;margin-bottom:.75rem}
+.footer-brand p{font-size:.8rem;color:var(--tm);line-height:1.7;max-width:260px;margin-bottom:1rem}
+.footer-email{display:inline-flex;align-items:center;gap:6px;color:var(--b3);text-decoration:none;font-size:.82rem;transition:opacity .2s}
+.footer-email:hover{opacity:.75}
+.footer-col h5{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;margin-bottom:.9rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{color:var(--tm);text-decoration:none;font-size:.8rem;transition:color .2s}
+.footer-col ul a:hover{color:var(--tx)}
+.footer-bottom{border-top:.5px solid var(--br);padding-top:1.25rem;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-bottom p{font-size:.75rem;color:var(--tm)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(7,5,20,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--bg2);border:.5px solid var(--br);border-radius:24px;width:100%;max-width:840px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;transform:translateY(20px);transition:transform .25s}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-header{padding:1.1rem 1.5rem;border-bottom:.5px solid var(--br);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-header h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+.modal-close{background:var(--bg3);border:.5px solid var(--br);color:var(--tm);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{color:var(--tx);border-color:var(--b1)}
+.modal-note{padding:.5rem 1.5rem;background:rgba(108,59,255,.07);border-bottom:.5px solid var(--br);font-size:.73rem;color:#B09FFF;text-align:center}
+.modal-body{overflow-y:auto;flex:1}
+
+/* CHATBOT */
+#chatbot-btn{position:fixed;bottom:2rem;left:1.5rem;width:52px;height:52px;background:linear-gradient(135deg,var(--b1),var(--b2));border:none;border-radius:50%;color:white;font-size:1.3rem;cursor:pointer;z-index:500;box-shadow:0 4px 24px rgba(108,59,255,.5);transition:transform .2s;display:flex;align-items:center;justify-content:center}
+#chatbot-btn:hover{transform:scale(1.08)}
+#chatbot-panel{position:fixed;bottom:5.5rem;left:1.5rem;width:320px;background:var(--bg2);border:.5px solid var(--br);border-radius:20px;overflow:hidden;z-index:500;box-shadow:0 20px 60px var(--shadow);display:none;flex-direction:column;max-height:440px}
+#chatbot-panel.open{display:flex}
+.cb-header{padding:.85rem 1rem;background:linear-gradient(135deg,var(--b1),var(--b2));display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.cb-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.cb-header-info h4{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:white}
+.cb-header-info p{font-size:.7rem;color:rgba(255,255,255,.7)}
+.cb-close{margin-left:auto;background:none;border:none;color:white;cursor:pointer;font-size:1rem;opacity:.7;transition:opacity .2s}
+.cb-close:hover{opacity:1}
+.cb-messages{flex:1;overflow-y:auto;padding:.75rem;display:flex;flex-direction:column;gap:.6rem}
+.cb-msg{max-width:85%;padding:.55rem .8rem;border-radius:12px;font-size:.8rem;line-height:1.5;animation:msgIn .2s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.cb-msg.bot{background:var(--bg3);color:var(--tx);border-bottom-left-radius:4px;align-self:flex-start}
+.cb-msg.user{background:var(--b1);color:white;border-bottom-right-radius:4px;align-self:flex-end}
+.cb-options{padding:.5rem .75rem;display:flex;flex-direction:column;gap:.4rem;flex-shrink:0}
+.cb-opt{background:var(--bg3);border:.5px solid var(--br);color:var(--tx);padding:.45rem .75rem;border-radius:100px;font-size:.75rem;cursor:pointer;transition:all .2s;text-align:left;font-family:'DM Sans',sans-serif}
+.cb-opt:hover{border-color:var(--b1);background:rgba(108,59,255,.1);color:var(--b1)}
+.cb-input-row{padding:.6rem .75rem;border-top:.5px solid var(--br);display:flex;gap:.5rem;flex-shrink:0}
+.cb-input{flex:1;background:var(--input-bg);border:.5px solid var(--br);border-radius:100px;padding:.42rem .85rem;color:var(--tx);font-size:.78rem;outline:none;font-family:'DM Sans',sans-serif}
+.cb-input:focus{border-color:var(--b1)}
+.cb-send{background:var(--b1);border:none;color:white;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .2s}
+.cb-send:hover{opacity:.85}
+.cb-typing{display:flex;gap:4px;align-items:center;padding:.55rem .8rem;background:var(--bg3);border-radius:12px;border-bottom-left-radius:4px;align-self:flex-start;width:fit-content}
+.cb-typing span{width:6px;height:6px;background:var(--tm);border-radius:50%;animation:typing .9s infinite}
+.cb-typing span:nth-child(2){animation-delay:.15s}
+.cb-typing span:nth-child(3){animation-delay:.3s}
+@keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+/* DEMO VITRINE */
+.demo-vitrine{font-family:'DM Sans',sans-serif;background:#0a0814;color:white;min-height:500px}
+.dv-nav{background:#0a0814;padding:.65rem 1.2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;z-index:10}
+.dv-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#6C3BFF}
+.dv-links{display:flex;gap:1rem;list-style:none}.dv-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.73rem;transition:color .2s;cursor:pointer}.dv-links a:hover{color:white}
+.dv-hero{padding:2.5rem 1.5rem;text-align:center;background:linear-gradient(160deg,#0d0821,#160d2e)}
+.dv-hero h1{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;margin-bottom:.55rem;background:linear-gradient(135deg,#6C3BFF,#FF3B8B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dv-hero p{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:1.1rem}
+.dv-btns{display:flex;gap:.55rem;justify-content:center}
+.dvbp{background:#6C3BFF;color:white;padding:.48rem 1.1rem;border-radius:100px;font-size:.73rem;border:none;cursor:pointer;transition:opacity .2s;font-family:'DM Sans',sans-serif}
+.dvbp:hover{opacity:.85}
+.dvbs{background:transparent;color:white;padding:.48rem 1.1rem;border-radius:100px;font-size:.73rem;border:1px solid rgba(108,59,255,.35);cursor:pointer;font-family:'DM Sans',sans-serif}
+.dv-services{padding:1.5rem;background:#0d0821}
+.dv-services h2{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;text-align:center;margin-bottom:.9rem;color:white}
+.dv-sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.dv-sc{background:#16122B;border:.5px solid rgba(108,59,255,.2);border-radius:10px;padding:.85rem .75rem;text-align:center;transition:border-color .2s,transform .2s;cursor:pointer}
+.dv-sc:hover{border-color:#6C3BFF;transform:translateY(-2px)}
+.dv-sc.sel-card{border-color:#6C3BFF;background:rgba(108,59,255,.12)}
+.dv-sc .ico{font-size:1.35rem;margin-bottom:.3rem}
+.dv-sc h4{font-size:.7rem;font-weight:600;color:white;margin-bottom:.2rem}
+.dv-sc p{font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4}
+.dv-contact{padding:1.5rem;background:#0a0814;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+.dv-contact h2{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:white;margin-bottom:.4rem}
+.dv-contact p{font-size:.73rem;color:rgba(255,255,255,.45);margin-bottom:.9rem}
+.dv-form{display:flex;flex-direction:column;gap:.45rem;max-width:300px;margin:0 auto}
+.dv-form input,.dv-form textarea{background:#16122B;border:.5px solid rgba(108,59,255,.25);border-radius:7px;padding:.5rem .75rem;color:white;font-size:.73rem;outline:none;width:100%;font-family:'DM Sans',sans-serif}
+.dv-form textarea{min-height:55px;resize:none}
+.dv-form button{background:#6C3BFF;color:white;border:none;border-radius:7px;padding:.5rem;font-size:.73rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.dv-form button:hover{opacity:.85}
+
+/* DEMO APP */
+.demo-app{display:flex;justify-content:center;padding:1.5rem 1rem;background:var(--bg)}
+.phone-frame{width:255px;background:#0d0821;border-radius:36px;border:6px solid #1a1535;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.phone-notch{height:26px;background:#0a0814;display:flex;align-items:center;justify-content:center}
+.notch-inner{width:80px;height:16px;background:#000;border-radius:0 0 10px 10px}
+.app-screen{background:#0d0821}
+.app-header{padding:.7rem .9rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
+.app-header span{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:white}
+.app-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#6C3BFF,#FF3B8B);display:flex;align-items:center;justify-content:center;font-size:.62rem;color:white;font-weight:600}
+.app-hero-card{margin:.65rem;background:linear-gradient(135deg,rgba(108,59,255,.28),rgba(255,59,139,.18));border-radius:14px;padding:.9rem}
+.app-hero-card h3{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;margin-bottom:.2rem}
+.app-hero-card p{font-size:.62rem;color:rgba(255,255,255,.55);margin-bottom:.65rem}
+.app-start-btn{background:white;color:#6C3BFF;border:none;border-radius:8px;padding:.32rem .65rem;font-size:.62rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.app-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;margin:.45rem .65rem}
+.app-stat{background:#16122B;border-radius:10px;padding:.5rem;text-align:center}
+.app-stat .val{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:#00E5C3}
+.app-stat .lbl{font-size:.52rem;color:rgba(255,255,255,.4);margin-top:1px}
+.app-stitle{padding:.55rem .65rem .25rem;font-size:.6rem;font-weight:600;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px}
+.wlist{padding:0 .65rem .65rem;display:flex;flex-direction:column;gap:.35rem}
+.wi{background:#16122B;border-radius:10px;padding:.55rem .7rem;display:flex;align-items:center;gap:.55rem;cursor:pointer;transition:all .2s;border:.5px solid transparent}
+.wi:hover{background:#1F1A38;border-color:rgba(108,59,255,.3)}
+.wi.act{background:rgba(108,59,255,.14);border-color:#6C3BFF}
+.wi-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.wi-inf{flex:1}.wi-inf h5{font-size:.67rem;font-weight:600;color:white;margin-bottom:1px}.wi-inf p{font-size:.58rem;color:rgba(255,255,255,.4)}
+.wi-kcal{font-size:.6rem;color:#00E5C3;font-weight:600}
+.app-nav-bar{display:flex;border-top:1px solid rgba(255,255,255,.06);background:#0a0814}
+.anav{flex:1;padding:.55rem;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;transition:all .2s}
+.anav span{font-size:.52rem;color:rgba(255,255,255,.3)}
+.anav .ico{font-size:.95rem}
+.anav.act span{color:#6C3BFF}
+.phone-home-bar{height:3px;background:rgba(255,255,255,.12);border-radius:2px;margin:.35rem auto;width:70px}
+
+/* DEMO ECOM */
+.demo-ecom{font-family:'DM Sans',sans-serif;background:#f8f5ff;color:#1a1535}
+.ec-nav{background:white;padding:.6rem 1.1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ede9ff;position:sticky;top:0;z-index:10}
+.ec-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;color:#6C3BFF}
+.ec-search{flex:1;max-width:200px;margin:0 .65rem;background:#f3f0ff;border:1px solid #e0d9ff;border-radius:8px;padding:.32rem .65rem;font-size:.7rem;outline:none;color:#333;font-family:'DM Sans',sans-serif}
+.ec-cart-btn{background:#6C3BFF;color:white;border:none;border-radius:8px;padding:.35rem .7rem;font-size:.7rem;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px;position:relative;transition:opacity .2s}
+.ec-cart-btn:hover{opacity:.85}
+.cbadge{position:absolute;top:-5px;right:-5px;background:#FF3B8B;color:white;border-radius:50%;width:15px;height:15px;font-size:.52rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+.ec-hero{background:linear-gradient(135deg,#6C3BFF,#FF3B8B);padding:1.35rem;text-align:center;color:white}
+.ec-hero h2{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:.28rem}
+.ec-hero p{font-size:.7rem;opacity:.82;margin-bottom:.7rem}
+.ec-hero-btn{background:white;color:#6C3BFF;border:none;border-radius:8px;padding:.4rem .95rem;font-size:.7rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s}
+.ec-hero-btn:hover{opacity:.85}
+.ec-cats{display:flex;gap:.45rem;padding:.65rem .9rem;overflow-x:auto;background:white;border-bottom:1px solid #ede9ff;scrollbar-width:none}
+.ec-cats::-webkit-scrollbar{display:none}
+.ec-cat{background:#f3f0ff;color:#6C3BFF;border:.5px solid #ddd6ff;border-radius:100px;padding:.28rem .7rem;font-size:.68rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:'DM Sans',sans-serif}
+.ec-cat.act,.ec-cat:hover{background:#6C3BFF;color:white;border-color:#6C3BFF}
+.ec-prods{padding:.85rem .9rem;display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;background:#f8f5ff}
+.ec-prod{background:white;border-radius:12px;overflow:hidden;border:.5px solid #ede9ff;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.ec-prod:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(108,59,255,.1)}
+.ec-prod.hidden{display:none}
+.ec-img{height:80px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:linear-gradient(135deg,#f3f0ff,#fff5f9)}
+.ec-info{padding:.55rem .7rem}
+.ec-name{font-size:.7rem;font-weight:600;color:#1a1535;margin-bottom:.18rem}
+.ec-price{font-size:.78rem;font-weight:700;color:#6C3BFF;margin-bottom:.38rem}
+.ec-add{width:100%;background:#6C3BFF;color:white;border:none;border-radius:7px;padding:.35rem;font-size:.66rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.ec-add:hover{opacity:.85}.ec-add:active{transform:scale(.97)}
+.ec-foot{background:white;border-top:1px solid #ede9ff;padding:.7rem .9rem;text-align:center;font-size:.68rem;color:#9B94C0}
+
+/* ANIMATIONS SCROLL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .footer-inner{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}.scbs{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr}
+  .dv-sgrid{grid-template-columns:1fr}
+  .stats{flex-wrap:wrap}.stat{border-right:none;border-bottom:.5px solid var(--br);min-width:45%}
+  .stat:last-child{border-bottom:none}
+  .comp-wrap{overflow-x:auto}
+  #chatbot-panel{width:290px;left:1rem}
+}
+@media(max-width:480px){
+  h1{font-size:2rem}.hero{padding:4rem 1.25rem 3rem}
+  .sec{padding:3.5rem 1.25rem}.dsec{padding:1.5rem}
+  .tgrid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}
+  .scbs{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span>Kairos</span><em>Digital</em></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#process">Processus</a></li>
+      <li><a href="#temoignages">Avis</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-btn" onclick="toggleLang()" id="lang-toggle">🌐 EN</button>
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle">🌙</button>
+      <a href="#devis" class="nav-cta">Devis gratuit</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#process" onclick="toggleMenu()">Processus</a>
+  <a href="#temoignages" onclick="toggleMenu()">Avis clients</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#devis" onclick="toggleMenu()" style="color:var(--b1);font-weight:600">→ Devis gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hc">
+    <div class="badge" data-fr="Agence digitale · Développement sur mesure" data-en="Digital agency · Custom development">Agence digitale · Développement sur mesure</div>
+    <h1 data-fr="On transforme vos idées en <span class='gt'>expériences digitales</span> mémorables" data-en="We turn your ideas into <span class='gt'>memorable digital</span> experiences">On transforme vos idées en <span class="gt">expériences digitales</span> mémorables</h1>
+    <p class="hs" data-fr="Sites vitrines, applications mobiles, boutiques en ligne — on conçoit des produits numériques qui font la différence." data-en="Landing pages, mobile apps, online stores — we build digital products that make an impact.">Sites vitrines, applications mobiles, boutiques en ligne — on conçoit des produits numériques qui font la différence.</p>
+    <div class="hbtns">
+      <a href="#devis" class="bp" data-fr="Demander un devis ↗" data-en="Get a free quote ↗">Demander un devis ↗</a>
+      <a href="#portfolio" class="bs" data-fr="Voir nos réalisations" data-en="See our work">Voir nos réalisations</a>
+    </div>
+    <div class="hero-offer" data-fr="🎁 Audit gratuit de votre projet inclus avec chaque devis" data-en="🎁 Free project audit included with every quote">🎁 Audit gratuit de votre projet inclus avec chaque devis</div>
+  </div>
+</section>
+
+<!-- TECH STRIP -->
+<div class="tech-strip">
+  <div class="tech-track">
+    <div class="tech-item"><span>⚛️</span> React</div>
+    <div class="tech-item"><span>▲</span> Next.js</div>
+    <div class="tech-item"><span>📱</span> React Native</div>
+    <div class="tech-item"><span>🐦</span> Flutter</div>
+    <div class="tech-item"><span>🛒</span> Shopify</div>
+    <div class="tech-item"><span>🔷</span> TypeScript</div>
+    <div class="tech-item"><span>🔥</span> Firebase</div>
+    <div class="tech-item"><span>🌿</span> Node.js</div>
+    <div class="tech-item"><span>🐘</span> PostgreSQL</div>
+    <div class="tech-item"><span>💳</span> Stripe</div>
+    <div class="tech-item"><span>☁️</span> AWS</div>
+    <div class="tech-item"><span>🎨</span> Figma</div>
+    <!-- duplicate for infinite scroll -->
+    <div class="tech-item"><span>⚛️</span> React</div>
+    <div class="tech-item"><span>▲</span> Next.js</div>
+    <div class="tech-item"><span>📱</span> React Native</div>
+    <div class="tech-item"><span>🐦</span> Flutter</div>
+    <div class="tech-item"><span>🛒</span> Shopify</div>
+    <div class="tech-item"><span>🔷</span> TypeScript</div>
+    <div class="tech-item"><span>🔥</span> Firebase</div>
+    <div class="tech-item"><span>🌿</span> Node.js</div>
+    <div class="tech-item"><span>🐘</span> PostgreSQL</div>
+    <div class="tech-item"><span>💳</span> Stripe</div>
+    <div class="tech-item"><span>☁️</span> AWS</div>
+    <div class="tech-item"><span>🎨</span> Figma</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal"><div class="sn" data-target="50" data-suffix="+">0</div><div class="sl" data-fr="Projets livrés" data-en="Projects delivered">Projets livrés</div></div>
+  <div class="stat reveal"><div class="sn" data-target="98" data-suffix="%">0</div><div class="sl" data-fr="Clients satisfaits" data-en="Satisfied clients">Clients satisfaits</div></div>
+  <div class="stat reveal"><div class="sn" data-target="48" data-suffix="h">0</div><div class="sl" data-fr="Réponse devis" data-en="Quote response">Réponse devis</div></div>
+  <div class="stat reveal"><div class="sn">5★</div><div class="sl" data-fr="Note moyenne" data-en="Average rating">Note moyenne</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="stag reveal" data-fr="Nos services" data-en="Our services">Nos services</div>
+  <h2 class="reveal" data-fr="Ce qu'on fait<br>pour vous" data-en="What we do<br>for you">Ce qu'on fait<br>pour vous</h2>
+  <p class="sdesc reveal" data-fr="Des solutions digitales complètes, conçues avec soin pour atteindre vos objectifs." data-en="Complete digital solutions, carefully crafted to meet your goals.">Des solutions digitales complètes, conçues avec soin pour atteindre vos objectifs.</p>
+  <div class="sgrid">
+    <div class="sc cw reveal"><div class="si iw">🌐</div><h3 data-fr="Sites vitrines" data-en="Landing pages">Sites vitrines</h3><p data-fr="Des sites web modernes, rapides et optimisés SEO pour présenter votre activité avec impact. Design unique, adapté à votre image." data-en="Modern, fast, SEO-optimized websites to present your business with impact. Unique design tailored to your brand.">Des sites web modernes, rapides et optimisés SEO pour présenter votre activité avec impact. Design unique, adapté à votre image.</p><div class="tags"><span class="t tp">React/Next.js</span><span class="t tp">SEO</span><span class="t tp">Responsive</span></div></div>
+    <div class="sc ca reveal"><div class="si ia">📱</div><h3 data-fr="Applications mobiles" data-en="Mobile apps">Applications mobiles</h3><p data-fr="Apps iOS & Android performantes, pensées pour l'expérience utilisateur. Cross-platform ou natif, selon vos besoins." data-en="High-performance iOS & Android apps focused on user experience. Cross-platform or native, your choice.">Apps iOS & Android performantes, pensées pour l'expérience utilisateur. Cross-platform ou natif, selon vos besoins.</p><div class="tags"><span class="t tk">React Native</span><span class="t tk">Flutter</span><span class="t tk">iOS/Android</span></div></div>
+    <div class="sc ce reveal"><div class="si ie">🛒</div><h3 data-fr="E-commerce" data-en="E-commerce">E-commerce</h3><p data-fr="Boutiques en ligne sécurisées, optimisées pour la conversion. Paiement, stocks en temps réel, tableau de bord admin." data-en="Secure online stores optimized for conversion. Payment, real-time inventory, admin dashboard.">Boutiques en ligne sécurisées, optimisées pour la conversion. Paiement, stocks en temps réel, tableau de bord admin.</p><div class="tags"><span class="t tt">Shopify</span><span class="t tt">WooCommerce</span><span class="t tt">Sur mesure</span></div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec" id="pourquoi" style="padding-top:0">
+  <div class="stag reveal" data-fr="Pourquoi nous" data-en="Why us">Pourquoi nous</div>
+  <h2 class="reveal" data-fr="KairosDigital,<br>le bon choix" data-en="KairosDigital,<br>the right choice">KairosDigital,<br>le bon choix</h2>
+  <p class="sdesc reveal" data-fr="On ne fait pas juste du code. On s'implique dans votre succès." data-en="We don't just write code. We're invested in your success.">On ne fait pas juste du code. On s'implique dans votre succès.</p>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-ico">⚡</div><h4 data-fr="Livraison rapide" data-en="Fast delivery">Livraison rapide</h4><p data-fr="Délais tenus, sprints courts, livraisons régulières. Votre projet avance vite." data-en="Deadlines met, short sprints, regular deliveries. Your project moves fast.">Délais tenus, sprints courts, livraisons régulières. Votre projet avance vite.</p></div>
+    <div class="why-card reveal"><div class="why-ico">💎</div><h4 data-fr="Qualité premium" data-en="Premium quality">Qualité premium</h4><p data-fr="Code propre, design soigné, performances optimisées. Rien n'est laissé au hasard." data-en="Clean code, polished design, optimized performance. Nothing left to chance.">Code propre, design soigné, performances optimisées. Rien n'est laissé au hasard.</p></div>
+    <div class="why-card reveal"><div class="why-ico">🤝</div><h4 data-fr="Accompagnement total" data-en="Full support">Accompagnement total</h4><p data-fr="De l'idée au lancement et après. On reste disponibles pour vous." data-en="From idea to launch and beyond. We stay available for you.">De l'idée au lancement et après. On reste disponibles pour vous.</p></div>
+    <div class="why-card reveal"><div class="why-ico">💰</div><h4 data-fr="Prix transparents" data-en="Transparent pricing">Prix transparents</h4><p data-fr="Devis détaillé, aucune surprise. Vous savez exactement pour quoi vous payez." data-en="Detailed quotes, no surprises. You know exactly what you're paying for.">Devis détaillé, aucune surprise. Vous savez exactement pour quoi vous payez.</p></div>
+  </div>
+</section>
+
+<!-- COMPARATIF -->
+<section class="sec" id="comparatif" style="padding-top:0">
+  <div class="stag reveal" data-fr="Comparatif" data-en="Comparison">Comparatif</div>
+  <h2 class="reveal" data-fr="Pourquoi pas une<br>agence classique ?" data-en="Why not a<br>traditional agency?">Pourquoi pas une<br>agence classique ?</h2>
+  <p class="sdesc reveal" data-fr="Ce qui nous différencie concrètement." data-en="What concretely sets us apart.">Ce qui nous différencie concrètement.</p>
+  <div class="comp-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th data-fr="Critère" data-en="Criteria">Critère</th>
+          <th class="comp-head-us" data-fr="KairosDigital ✦" data-en="KairosDigital ✦">KairosDigital ✦</th>
+          <th data-fr="Agence classique" data-en="Traditional agency">Agence classique</th>
+          <th data-fr="Freelance" data-en="Freelancer">Freelance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-fr="Délai moyen" data-en="Average deadline">Délai moyen</td><td class="us comp-ok" data-fr="2–6 semaines" data-en="2–6 weeks">2–6 semaines</td><td class="comp-mid" data-fr="2–6 mois" data-en="2–6 months">2–6 mois</td><td class="comp-mid" data-fr="Variable" data-en="Variable">Variable</td></tr>
+        <tr><td data-fr="Prix" data-en="Pricing">Prix</td><td class="us comp-ok" data-fr="Transparent & juste" data-en="Transparent & fair">Transparent & juste</td><td class="comp-no" data-fr="Élevé & opaque" data-en="High & opaque">Élevé & opaque</td><td class="comp-ok" data-fr="Compétitif" data-en="Competitive">Compétitif</td></tr>
+        <tr><td data-fr="Suivi projet" data-en="Project tracking">Suivi projet</td><td class="us comp-ok">✅</td><td class="comp-mid">⚠️</td><td class="comp-no">❌</td></tr>
+        <tr><td data-fr="Maintenance" data-en="Maintenance">Maintenance</td><td class="us comp-ok">✅</td><td class="comp-ok">✅</td><td class="comp-no">❌</td></tr>
+        <tr><td data-fr="Design sur mesure" data-en="Custom design">Design sur mesure</td><td class="us comp-ok">✅</td><td class="comp-ok">✅</td><td class="comp-mid">⚠️</td></tr>
+        <tr><td data-fr="Audit projet offert" data-en="Free project audit">Audit projet offert</td><td class="us comp-ok">✅</td><td class="comp-no">❌</td><td class="comp-no">❌</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="sec" id="portfolio" style="padding-top:0">
+  <div class="stag reveal" data-fr="Exemples de réalisations" data-en="Work samples">Exemples de réalisations</div>
+  <h2 class="reveal" data-fr="Ce qu'on sait<br>construire" data-en="What we know<br>how to build">Ce qu'on sait<br>construire</h2>
+  <p class="sdesc reveal" data-fr="Démos interactives pour vous montrer notre niveau de réalisation." data-en="Interactive demos to show you what we can build.">Démos interactives pour vous montrer notre niveau de réalisation.</p>
+  <div class="pfilters reveal">
+    <button class="fb active" onclick="filterP('all',this)" data-fr="Tous" data-en="All">Tous</button>
+    <button class="fb" onclick="filterP('web',this)" data-fr="Sites vitrines" data-en="Landing pages">Sites vitrines</button>
+    <button class="fb" onclick="filterP('app',this)" data-fr="Applications" data-en="Apps">Applications</button>
+    <button class="fb" onclick="filterP('ecom',this)" data-fr="E-commerce" data-en="E-commerce">E-commerce</button>
+  </div>
+  <div class="pgrid">
+    <div class="pc reveal" data-cat="web">
+      <div class="pthumb ptw"><div class="mock"><div class="mb ac"></div><div class="mb md"></div><div class="mb sh"></div><div class="mg"><div class="mbl"></div><div class="mbl"></div><div class="mbl"></div><div class="mbl"></div></div></div></div>
+      <div class="pi"><div class="pty" data-fr="Site vitrine · Exemple" data-en="Landing page · Example">Site vitrine · Exemple</div><h4 data-fr="Cabinet d'architectes" data-en="Architecture firm">Cabinet d'architectes</h4><p data-fr="Site portfolio avec galerie, animations et formulaire de contact." data-en="Portfolio site with gallery, animations and contact form.">Site portfolio avec galerie, animations et formulaire de contact.</p><div class="tags"><span class="t tp">Next.js</span><span class="t tp">Animations</span><span class="t tp">CMS</span></div><div class="pr">✦ +65% de contacts en 3 mois</div><button class="demo-btn" onclick="openModal('web')" data-fr="▶ Voir la démo interactive" data-en="▶ See interactive demo">▶ Voir la démo interactive</button></div>
+    </div>
+    <div class="pc reveal" data-cat="app">
+      <div class="pthumb pta"><div class="mock"><div class="mb" style="background:#FF3B8B;width:50%"></div><div class="mb md"></div><div class="mb sh"></div><div class="mg"><div class="mbl" style="background:rgba(255,59,139,.1)"></div><div class="mbl"></div><div class="mbl"></div><div class="mbl"></div></div></div></div>
+      <div class="pi"><div class="pty" style="color:#FF3B8B" data-fr="Application mobile · Exemple" data-en="Mobile app · Example">Application mobile · Exemple</div><h4>FitTrack — Suivi sportif</h4><p data-fr="App iOS/Android de suivi d'entraînement avec dashboard et notifications." data-en="iOS/Android workout tracking app with dashboard and notifications.">App iOS/Android de suivi d'entraînement avec dashboard et notifications.</p><div class="tags"><span class="t tk">React Native</span><span class="t tk">Firebase</span><span class="t tk">Push notifs</span></div><div class="pr">✦ 4,8★ · 2 000+ téléchargements</div><button class="demo-btn" onclick="openModal('app')" data-fr="▶ Voir la démo interactive" data-en="▶ See interactive demo">▶ Voir la démo interactive</button></div>
+    </div>
+    <div class="pc reveal" data-cat="ecom">
+      <div class="pthumb pte"><div class="mock"><div class="mb" style="background:#00E5C3;width:55%"></div><div class="mb md"></div><div class="mb sh"></div><div class="mg"><div class="mbl" style="background:rgba(0,229,195,.1)"></div><div class="mbl"></div><div class="mbl"></div><div class="mbl"></div></div></div></div>
+      <div class="pi"><div class="pty" style="color:#00E5C3" data-fr="E-commerce · Exemple" data-en="E-commerce · Example">E-commerce · Exemple</div><h4>Maison Céleste — Bijoux</h4><p data-fr="Boutique en ligne avec paiement, stocks en temps réel et espace client." data-en="Online store with payment, real-time inventory and customer area.">Boutique en ligne avec paiement, stocks en temps réel et espace client.</p><div class="tags"><span class="t tt">Shopify</span><span class="t tt">Stripe</span><span class="t tt">Analytics</span></div><div class="pr">✦ 120k€ de CA le premier trimestre</div><button class="demo-btn" onclick="openModal('ecom')" data-fr="▶ Voir la démo interactive" data-en="▶ See interactive demo">▶ Voir la démo interactive</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec" id="process" style="padding-top:0">
+  <div class="stag reveal" data-fr="Notre processus" data-en="Our process">Notre processus</div>
+  <h2 class="reveal" data-fr="Simple, rapide,<br>efficace" data-en="Simple, fast,<br>effective">Simple, rapide,<br>efficace</h2>
+  <p class="sdesc reveal" data-fr="De l'idée au lancement en 4 étapes claires." data-en="From idea to launch in 4 clear steps.">De l'idée au lancement en 4 étapes claires.</p>
+  <div class="psteps">
+    <div class="step reveal"><div class="stepn" style="color:#6C3BFF">01</div><h4 data-fr="Découverte" data-en="Discovery">Découverte</h4><p data-fr="On échange sur vos besoins, votre cible et vos objectifs." data-en="We discuss your needs, target audience and objectives.">On échange sur vos besoins, votre cible et vos objectifs.</p></div>
+    <div class="step reveal"><div class="stepn" style="color:#FF3B8B">02</div><h4 data-fr="Conception" data-en="Design">Conception</h4><p data-fr="Maquettes, architecture et validation du design." data-en="Mockups, architecture and design validation.">Maquettes, architecture et validation du design.</p></div>
+    <div class="step reveal"><div class="stepn" style="color:#FFB830">03</div><h4 data-fr="Développement" data-en="Development">Développement</h4><p data-fr="Code propre, performant et livraisons régulières." data-en="Clean, performant code with regular deliveries.">Code propre, performant et livraisons régulières.</p></div>
+    <div class="step reveal"><div class="stepn" style="color:#00E5C3">04</div><h4 data-fr="Lancement" data-en="Launch">Lancement</h4><p data-fr="Mise en ligne, formation et accompagnement continu." data-en="Go-live, training and ongoing support.">Mise en ligne, formation et accompagnement continu.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="temoignages" style="padding-top:0">
+  <div class="stag reveal" data-fr="Témoignages" data-en="Testimonials">Témoignages</div>
+  <h2 class="reveal" data-fr="Ils nous font<br>confiance" data-en="They trust<br>us">Ils nous font<br>confiance</h2>
+  <p class="sdesc reveal" data-fr="Ce que nos clients disent de nous." data-en="What our clients say about us.">Ce que nos clients disent de nous.</p>
+  <div class="tgrid">
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"</div>
+      <p class="ttext" data-fr="Équipe réactive, design au top et délais respectés. Notre site a doublé notre taux de contact en 2 mois. Je recommande à 100%." data-en="Responsive team, top design and deadlines met. Our site doubled our contact rate in 2 months. 100% recommended.">Équipe réactive, design au top et délais respectés. Notre site a doublé notre taux de contact en 2 mois. Je recommande à 100%.</p>
+      <div class="tauthor"><div class="tavatar" style="background:linear-gradient(135deg,#6C3BFF,#FF3B8B)">SM</div><div><div class="tname">Sophie M.</div><div class="trole" data-fr="Fondatrice — Cabinet Moreau" data-en="Founder — Moreau Studio">Fondatrice — Cabinet Moreau</div></div></div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"</div>
+      <p class="ttext" data-fr="Notre app a été livrée en 5 semaines, exactement comme promis. Qualité du code irréprochable et suivi parfait tout au long du projet." data-en="Our app was delivered in 5 weeks, exactly as promised. Flawless code quality and perfect follow-up throughout the project.">Notre app a été livrée en 5 semaines, exactement comme promis. Qualité du code irréprochable et suivi parfait tout au long du projet.</p>
+      <div class="tauthor"><div class="tavatar" style="background:linear-gradient(135deg,#FF3B8B,#FFB830)">TK</div><div><div class="tname">Thomas K.</div><div class="trole" data-fr="CEO — FitTrack" data-en="CEO — FitTrack">CEO — FitTrack</div></div></div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"</div>
+      <p class="ttext" data-fr="120 000€ de CA dès le premier trimestre. La boutique est rapide, belle et convertit vraiment. KairosDigital a transformé notre business." data-en="€120,000 in revenue in the first quarter. The store is fast, beautiful and truly converts. KairosDigital transformed our business.">120 000€ de CA dès le premier trimestre. La boutique est rapide, belle et convertit vraiment. KairosDigital a transformé notre business.</p>
+      <div class="tauthor"><div class="tavatar" style="background:linear-gradient(135deg,#00E5C3,#6C3BFF)">LC</div><div><div class="tname">Lucie C.</div><div class="trole" data-fr="Dirigeante — Maison Céleste" data-en="Owner — Maison Céleste">Dirigeante — Maison Céleste</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="stag reveal" data-fr="FAQ" data-en="FAQ">FAQ</div>
+  <h2 class="reveal" data-fr="Questions fréquentes" data-en="Frequently asked questions">Questions fréquentes</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span data-fr="Combien coûte un site web ?" data-en="How much does a website cost?">Combien coûte un site web ?</span><span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p data-fr="Nos tarifs démarrent à partir de 800€ pour un site vitrine simple. Le prix dépend de la complexité, du nombre de pages et des fonctionnalités souhaitées. Nous fournissons toujours un devis détaillé et transparent avant de commencer." data-en="Our rates start from €800 for a simple landing page. The price depends on complexity, number of pages and desired features. We always provide a detailed, transparent quote before starting.">Nos tarifs démarrent à partir de 800€ pour un site vitrine simple. Le prix dépend de la complexité, du nombre de pages et des fonctionnalités souhaitées. Nous fournissons toujours un devis détaillé et transparent avant de commencer.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span data-fr="Quel est le délai de réalisation ?" data-en="What are your turnaround times?">Quel est le délai de réalisation ?</span><span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p data-fr="Un site vitrine prend généralement 2 à 4 semaines. Une application mobile entre 4 et 8 semaines. Une boutique e-commerce entre 3 et 6 semaines. Ces délais dépendent de la réactivité du client pour les validations et contenus." data-en="A landing page typically takes 2 to 4 weeks. A mobile app between 4 and 8 weeks. An e-commerce store between 3 and 6 weeks. These timelines depend on client responsiveness for approvals and content.">Un site vitrine prend généralement 2 à 4 semaines. Une application mobile entre 4 et 8 semaines. Une boutique e-commerce entre 3 et 6 semaines. Ces délais dépendent de la réactivité du client pour les validations et contenus.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span data-fr="Est-ce que vous faites la maintenance après livraison ?" data-en="Do you provide maintenance after delivery?">Est-ce que vous faites la maintenance après livraison ?</span><span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p data-fr="Oui, nous proposons des contrats de maintenance mensuelle pour assurer les mises à jour, la sécurité et les petites modifications. Nous restons disponibles pour vous accompagner dans la durée." data-en="Yes, we offer monthly maintenance contracts to ensure updates, security and small changes. We stay available to support you over time.">Oui, nous proposons des contrats de maintenance mensuelle pour assurer les mises à jour, la sécurité et les petites modifications. Nous restons disponibles pour vous accompagner dans la durée.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span data-fr="Vous travaillez avec quel type de clients ?" data-en="What types of clients do you work with?">Vous travaillez avec quel type de clients ?</span><span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p data-fr="Nous travaillons avec des entrepreneurs, startups, TPE et PME dans tous les secteurs. Peu importe la taille de votre projet, nous l'écoutons et proposons la solution la plus adaptée à votre budget et vos besoins." data-en="We work with entrepreneurs, startups, and small to medium businesses across all sectors. Whatever the size of your project, we listen and propose the most suitable solution for your budget and needs.">Nous travaillons avec des entrepreneurs, startups, TPE et PME dans tous les secteurs. Peu importe la taille de votre projet, nous l'écoutons et proposons la solution la plus adaptée à votre budget et vos besoins.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span data-fr="Puis-je modifier le site moi-même après livraison ?" data-en="Can I edit the site myself after delivery?">Puis-je modifier le site moi-même après livraison ?</span><span class="faq-arrow">▼</span></div>
+      <div class="faq-a"><p data-fr="Absolument. Selon vos besoins, nous intégrons un CMS (système de gestion de contenu) qui vous permet de modifier textes, images et pages facilement, sans toucher au code. Une formation est incluse à la livraison." data-en="Absolutely. Depending on your needs, we integrate a CMS (content management system) that lets you edit text, images and pages easily, without touching the code. Training is included at delivery.">Absolument. Selon vos besoins, nous intégrons un CMS (système de gestion de contenu) qui vous permet de modifier textes, images et pages facilement, sans toucher au code. Une formation est incluse à la livraison.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS -->
+<section class="sec" id="devis" style="padding-top:0">
+  <div style="text-align:center;margin-bottom:2rem">
+    <div class="stag reveal" data-fr="Devis gratuit" data-en="Free quote">Devis gratuit</div>
+    <h2 class="reveal" data-fr="Parlons de votre projet" data-en="Let's talk about your project">Parlons de votre projet</h2>
+    <p class="sdesc reveal" style="margin:0 auto" data-fr="On vous contacte sur WhatsApp sous 48h, sans engagement. Audit gratuit inclus." data-en="We'll reach you on WhatsApp within 48h, no commitment. Free audit included.">On vous contacte sur WhatsApp sous 48h, sans engagement. Audit gratuit inclus.</p>
+  </div>
+  <div class="dsec reveal">
+    <div id="form-content">
+      <div class="fg">
+        <div class="fgrp"><label data-fr="Prénom et nom" data-en="Full name">Prénom et nom</label><input type="text" placeholder="Marie Dupont"/></div>
+        <div class="fgrp"><label data-fr="Numéro WhatsApp" data-en="WhatsApp number">Numéro WhatsApp</label><input type="tel" placeholder="+33 6 00 00 00 00"/></div>
+        <div class="fgrp"><label data-fr="Entreprise / Projet" data-en="Company / Project">Entreprise / Projet</label><input type="text" placeholder="Nom de votre société"/></div>
+        <div class="fgrp"><label data-fr="Budget estimé" data-en="Estimated budget">Budget estimé</label>
+          <select>
+            <option value="" disabled selected data-fr="Sélectionnez" data-en="Select">Sélectionnez</option>
+            <option data-fr="Moins de 1 000 €" data-en="Less than €1,000">Moins de 1 000 €</option>
+            <option data-fr="1 000 € – 5 000 €" data-en="€1,000 – €5,000">1 000 € – 5 000 €</option>
+            <option data-fr="5 000 € – 15 000 €" data-en="€5,000 – €15,000">5 000 € – 15 000 €</option>
+            <option data-fr="15 000 € – 30 000 €" data-en="€15,000 – €30,000">15 000 € – 30 000 €</option>
+            <option data-fr="Plus de 30 000 €" data-en="More than €30,000">Plus de 30 000 €</option>
+          </select>
+        </div>
+        <div class="fgrp full"><label data-fr="Services souhaités" data-en="Desired services">Services souhaités</label>
+          <div class="scbs">
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="🌐 Site vitrine" data-en="🌐 Landing page">🌐 Site vitrine</span></label>
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="📱 Application mobile" data-en="📱 Mobile app">📱 Application mobile</span></label>
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="🛒 E-commerce" data-en="🛒 E-commerce">🛒 E-commerce</span></label>
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="🎨 Design UI/UX" data-en="🎨 UI/UX Design">🎨 Design UI/UX</span></label>
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="⚙️ Maintenance" data-en="⚙️ Maintenance">⚙️ Maintenance</span></label>
+            <label class="cbi" onclick="tc(this)"><div class="cd"></div><span data-fr="📊 Autre" data-en="📊 Other">📊 Autre</span></label>
+          </div>
+        </div>
+        <div class="fgrp full"><label data-fr="Décrivez votre projet" data-en="Describe your project">Décrivez votre projet</label><textarea placeholder="Votre idée, fonctionnalités souhaitées, délai..."></textarea></div>
+      </div>
+      <div class="subrow">
+        <span class="subnote" data-fr="Données confidentielles, jamais partagées" data-en="Confidential data, never shared">Données confidentielles, jamais partagées</span>
+        <button class="bsub" onclick="submitF()" data-fr="Envoyer ma demande ✦" data-en="Send my request ✦">Envoyer ma demande ✦</button>
+      </div>
+    </div>
+    <div class="succmsg" id="succ">
+      <div class="succico">✅</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:.6rem" data-fr="Demande envoyée !" data-en="Request sent!">Demande envoyée !</h3>
+      <p style="color:var(--tm);font-size:.88rem;line-height:1.65" data-fr="Notre équipe vous contacte sous <strong style='color:var(--tx)'>48h</strong> via <strong style='color:var(--tx)'>WhatsApp</strong> 🎉" data-en="Our team will reach you within <strong style='color:var(--tx)'>48h</strong> via <strong style='color:var(--tx)'>WhatsApp</strong> 🎉">Notre équipe vous contacte sous <strong style="color:var(--tx)">48h</strong> via <strong style="color:var(--tx)">WhatsApp</strong> 🎉</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo"><span>Kairos</span><em>Digital</em></a>
+      <p data-fr="Agence de développement web & mobile. On transforme vos idées en produits digitaux qui performent." data-en="Web & mobile development agency. We turn your ideas into high-performing digital products.">Agence de développement web & mobile. On transforme vos idées en produits digitaux qui performent.</p>
+      <a href="https://wa.me/33695242023" target="_blank" class="footer-email">💬 Nous contacter sur WhatsApp</a>
+    </div>
+    <div class="footer-col">
+      <h5 data-fr="Services" data-en="Services">Services</h5>
+      <ul>
+        <li><a href="#services" data-fr="Sites vitrines" data-en="Landing pages">Sites vitrines</a></li>
+        <li><a href="#services" data-fr="Applications mobiles" data-en="Mobile apps">Applications mobiles</a></li>
+        <li><a href="#services" data-fr="E-commerce" data-en="E-commerce">E-commerce</a></li>
+        <li><a href="#services" data-fr="Design UI/UX" data-en="UI/UX Design">Design UI/UX</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-fr="Navigation" data-en="Navigation">Navigation</h5>
+      <ul>
+        <li><a href="#pourquoi" data-fr="Pourquoi nous" data-en="Why us">Pourquoi nous</a></li>
+        <li><a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a></li>
+        <li><a href="#temoignages" data-fr="Témoignages" data-en="Testimonials">Témoignages</a></li>
+        <li><a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+        <li><a href="#devis" data-fr="Devis gratuit" data-en="Free quote">Devis gratuit</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-fr="© 2025 KairosDigital. Tous droits réservés." data-en="© 2025 KairosDigital. All rights reserved.">© 2025 KairosDigital. Tous droits réservés.</p>
+    <p data-fr="Fait avec ❤️ pour nos clients" data-en="Made with ❤️ for our clients">Fait avec ❤️ pour nos clients</p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
+
+<!-- CHATBOT -->
+<button id="chatbot-btn" onclick="toggleChat()" title="Chat avec nous">💬</button>
+<div id="chatbot-panel">
+  <div class="cb-header">
+    <div class="cb-avatar">🤖</div>
+    <div class="cb-header-info"><h4>Assistant KairosDigital</h4><p>Répond en quelques secondes</p></div>
+    <button class="cb-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="cb-messages" id="cb-messages"></div>
+  <div class="cb-options" id="cb-options"></div>
+  <div class="cb-input-row">
+    <input class="cb-input" id="cb-input" placeholder="Votre message..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <button class="cb-send" onclick="sendMsg()">↑</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOut(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-title"></h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-note" id="modal-note"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('progress-bar').style.width=(s/h*100)+'%';
+  document.getElementById('back-top').classList.toggle('visible',s>400);
+});
+
+// THEME
+let isDark=true;
+function toggleTheme(){
+  isDark=!isDark;
+  document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
+  document.getElementById('theme-toggle').textContent=isDark?'🌙':'☀️';
+}
+
+// LANG — FIX: isFr déclaré en haut du scope, placeholders traduits, SELECT options traduits
+let isFr=true;
+function toggleLang(){
+  isFr=!isFr;
+  const key=isFr?'fr':'en';
+  document.getElementById('lang-toggle').textContent=isFr?'🌐 EN':'🌐 FR';
+  document.querySelectorAll('[data-fr]').forEach(el=>{
+    const val=el.getAttribute('data-'+key);
+    if(!val) return;
+    // Inputs/textareas : traduire le placeholder
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){
+      el.placeholder=val;
+    } else if(el.tagName==='OPTION'){
+      el.textContent=val;
+    } else {
+      el.innerHTML=val;
+    }
+  });
+  document.getElementById('cb-input').placeholder=isFr?'Votre message...':'Your message...';
+}
+
+// MOBILE MENU — FIX: fermeture en cliquant en dehors
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+document.addEventListener('click',(e)=>{
+  const menu=document.getElementById('mobile-menu');
+  const hamburger=document.querySelector('.hamburger');
+  if(menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)){
+    menu.classList.remove('open');
+  }
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href==='#') return; // logo link, don't prevent
+    e.preventDefault();
+    const t=document.querySelector(href);
+    if(t) t.scrollIntoView({behavior:'smooth'});
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+});
+
+// SCROLL REVEAL + COUNTER
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      // Direct stat counters (not nested)
+      if(entry.target.dataset.target){
+        if(!entry.target.dataset.counted){
+          entry.target.dataset.counted='1';
+          animateCounter(entry.target,parseInt(entry.target.dataset.target));
+        }
+      }
+      // Nested counters inside .reveal containers
+      const num=entry.target.querySelector('[data-target]');
+      if(num && !num.dataset.counted){
+        num.dataset.counted='1';
+        animateCounter(num,parseInt(num.dataset.target));
+      }
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal, [data-target]').forEach(el=>observer.observe(el));
+
+// FIX: suffixes corrects — 50 → "50+", 98 → "98%", 48 → "48h"
+function animateCounter(el,target){
+  let count=0;
+  const step=Math.ceil(target/40);
+  const suffix=el.dataset.suffix||'+';
+  const timer=setInterval(()=>{
+    count=Math.min(count+step,target);
+    el.textContent=count+suffix;
+    if(count>=target) clearInterval(timer);
+  },40);
+}
+
+// PORTFOLIO FILTER
+function filterP(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pc').forEach(c=>{
+    c.classList.toggle('hidden',cat!=='all'&&c.dataset.cat!==cat);
+  });
+}
+
+// FAQ
+function toggleFaq(el){
+  const item=el.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+// FORM
+function tc(el){el.classList.toggle('sel')}
+function submitF(){
+  const inputs=document.querySelectorAll('#form-content input, #form-content select, #form-content textarea');
+  const nom=inputs[0]?.value||'';
+  const email=inputs[1]?.value||'';
+  const entreprise=inputs[2]?.value||'';
+  const budget=inputs[3]?.value||'';
+  const desc=inputs[4]?.value||'';
+  const services=[...document.querySelectorAll('#form-content .cbi.sel span')].map(s=>s.textContent.trim()).join(', ')||'Non précisé';
+  const msg=`Bonjour KairosDigital ! 👋%0A%0A*Nouvelle demande de devis*%0A%0A👤 *Nom :* ${encodeURIComponent(nom)}%0A📧 *Email :* ${encodeURIComponent(email)}%0A🏢 *Entreprise :* ${encodeURIComponent(entreprise)}%0A💰 *Budget :* ${encodeURIComponent(budget)}%0A🛠 *Services :* ${encodeURIComponent(services)}%0A%0A📝 *Description :*%0A${encodeURIComponent(desc)}`;
+  document.getElementById('form-content').style.display='none';
+  document.getElementById('succ').style.display='block';
+  setTimeout(()=>{window.open(`https://wa.me/33695242023?text=${msg}`,'_blank');},600);
+}
+
+// CHATBOT
+const botReplies={
+  "💻 Site web":["Un site vitrine chez nous c'est à partir de 800€, livré en 2 à 4 semaines. Design sur mesure, responsive et optimisé SEO. 🌐","Vous voulez qu'on vous fasse une démo de ce qu'on sait créer ?",["Voir la démo site","Demander un devis","Autre question"]],
+  "📱 Application mobile":["Nous développons des apps iOS & Android avec React Native ou Flutter, livrées en 4 à 8 semaines. 📱","Vous avez déjà une idée précise de votre app ?",["Oui, expliquer mon idée","Voir la démo app","Demander un devis"]],
+  "🛒 E-commerce":["Boutiques Shopify ou sur mesure à partir de 1 500€. Paiement Stripe, gestion stocks, tableau de bord admin. 🛒",null,["Voir la démo boutique","Demander un devis","Autre question"]],
+  "💰 Tarifs & délais":["Voici nos fourchettes :\n• Site vitrine : 800€ – 5 000€ (2-4 sem)\n• App mobile : 3 000€ – 15 000€ (4-8 sem)\n• E-commerce : 1 500€ – 8 000€ (3-6 sem)\n\nAudit gratuit inclus avec chaque devis 🎁",null,["Demander un devis","Autre question"]],
+  "Voir la démo site":["Cliquez sur '▶ Voir la démo interactive' sur la carte Site vitrine dans la section Portfolio ! 👆",null,["Demander un devis","Autre question"]],
+  "Voir la démo app":["Cliquez sur '▶ Voir la démo interactive' sur la carte Application dans la section Portfolio ! 👆",null,["Demander un devis","Autre question"]],
+  "Voir la démo boutique":["Cliquez sur '▶ Voir la démo interactive' sur la carte E-commerce dans la section Portfolio ! 👆",null,["Demander un devis","Autre question"]],
+  "Demander un devis":["Super ! Remplissez le formulaire en bas de page, on vous contacte sur WhatsApp sous 48h 🚀 Audit gratuit inclus !",null,["Autre question"]],
+  "Oui, expliquer mon idée":["Parfait ! Décrivez votre idée dans le formulaire de devis en bas de page. On analyse et on vous propose une solution adaptée 💡",null,["Demander un devis"]],
+  "Autre question":["Bien sûr, qu'est-ce que vous souhaitez savoir ?",null,["💻 Site web","📱 Application mobile","🛒 E-commerce","💰 Tarifs & délais"]],
+};
+
+let chatOpen=false;
+let chatStarted=false;
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatbot-panel').classList.toggle('open',chatOpen);
+  if(chatOpen&&!chatStarted){
+    chatStarted=true;
+    setTimeout(()=>{
+      addTyping().then(()=>addBotMsg("Bonjour ! 👋 Je suis l'assistant de KairosDigital. Comment puis-je vous aider ?"));
+    },300);
+    setTimeout(()=>showOpts(["💻 Site web","📱 Application mobile","🛒 E-commerce","💰 Tarifs & délais"]),1200);
+  }
+}
+
+function addTyping(){
+  return new Promise(res=>{
+    const el=document.createElement('div');
+    el.className='cb-typing';
+    el.innerHTML='<span></span><span></span><span></span>';
+    el.id='typing';
+    document.getElementById('cb-messages').appendChild(el);
+    scrollChat();
+    setTimeout(()=>{el.remove();res();},700);
+  });
+}
+
+function addBotMsg(txt){
+  const el=document.createElement('div');
+  el.className='cb-msg bot';
+  el.textContent=txt;
+  document.getElementById('cb-messages').appendChild(el);
+  scrollChat();
+}
+
+function addUserMsg(txt){
+  const el=document.createElement('div');
+  el.className='cb-msg user';
+  el.textContent=txt;
+  document.getElementById('cb-messages').appendChild(el);
+  clearOpts();
+  scrollChat();
+}
+
+function showOpts(opts){
+  const c=document.getElementById('cb-options');
+  c.innerHTML='';
+  opts.forEach(o=>{
+    const btn=document.createElement('button');
+    btn.className='cb-opt';
+    btn.textContent=o;
+    btn.onclick=()=>handleOpt(o);
+    c.appendChild(btn);
+  });
+}
+
+function clearOpts(){document.getElementById('cb-options').innerHTML='';}
+
+function handleOpt(opt){
+  addUserMsg(opt);
+  const reply=botReplies[opt];
+  if(reply){
+    setTimeout(()=>{
+      addTyping().then(()=>{
+        addBotMsg(reply[0]);
+        if(reply[1]) setTimeout(()=>addBotMsg(reply[1]),400);
+        if(reply[2]) setTimeout(()=>showOpts(reply[2]),reply[1]?900:400);
+      });
+    },300);
+  }
+}
+
+function sendMsg(){
+  const inp=document.getElementById('cb-input');
+  const txt=inp.value.trim();
+  if(!txt) return;
+  inp.value='';
+  addUserMsg(txt);
+  setTimeout(()=>{
+    addTyping().then(()=>addBotMsg("Merci pour votre message ! Pour une réponse personnalisée, remplissez le formulaire de devis ou écrivez-nous à kairodigital65@gmail.com 📧"));
+    setTimeout(()=>showOpts(["💻 Site web","📱 Application mobile","🛒 E-commerce","💰 Tarifs & délais"]),1200);
+  },400);
+}
+
+function scrollChat(){
+  const m=document.getElementById('cb-messages');
+  setTimeout(()=>{m.scrollTop=m.scrollHeight;},50);
+}
+
+// MODAL DEMOS
+const demos={
+  web:{
+    title:"🌐 Démo — Site vitrine",
+    note:"Exemple de réalisation · Design & contenu fictifs à titre illustratif",
+    html:`<div class="demo-vitrine">
+<nav class="dv-nav">
+  <div class="dv-logo">Moreau & Associés</div>
+  <ul class="dv-links"><li><a onclick="dvScroll()">Projets</a></li><li><a>Agence</a></li><li><a onclick="dvScroll()">Contact</a></li></ul>
+</nav>
+<div class="dv-hero">
+  <h1>Architecture qui inspire</h1>
+  <p>Cabinet parisien spécialisé en rénovation haut de gamme et construction durable.</p>
+  <div class="dv-btns"><button class="dvbp" onclick="dvScroll()">Voir nos projets</button><button class="dvbs">Nous contacter</button></div>
+</div>
+<div class="dv-services" id="dv-srv">
+  <h2>Nos expertises</h2>
+  <div class="dv-sgrid">
+    <div class="dv-sc" onclick="dvSel(this)"><div class="ico">🏛️</div><h4>Rénovation</h4><p>Transformation d'espaces avec raffinement</p></div>
+    <div class="dv-sc" onclick="dvSel(this)"><div class="ico">🌿</div><h4>Éco-construction</h4><p>Bâtiments à faible empreinte carbone</p></div>
+    <div class="dv-sc" onclick="dvSel(this)"><div class="ico">🏢</div><h4>Commercial</h4><p>Bureaux & hôtels haut de gamme</p></div>
+  </div>
+</div>
+<div class="dv-contact">
+  <h2>Votre projet, parlons-en</h2>
+  <p>Réponse garantie sous 24h ouvrées</p>
+  <div class="dv-form">
+    <input type="text" placeholder="Votre nom"/>
+    <input type="email" placeholder="Votre email"/>
+    <textarea placeholder="Décrivez votre projet..."></textarea>
+    <button onclick="dvSend(this)">Envoyer le message</button>
+  </div>
+</div>
+<script>
+function dvSel(el){document.querySelectorAll('.dv-sc').forEach(s=>s.classList.remove('sel-card'));el.classList.add('sel-card');}
+function dvScroll(){document.getElementById('dv-srv').scrollIntoView({behavior:'smooth'});}
+function dvSend(btn){btn.textContent='✅ Message envoyé !';btn.style.background='#00E5C3';}
+<\/script></div>`
+  },
+  app:{
+    title:"📱 Démo — Application FitTrack",
+    note:"Exemple de réalisation · Interface fictive à titre illustratif",
+    html:`<div class="demo-app">
+<div class="phone-frame">
+<div class="phone-notch"><div class="notch-inner"></div></div>
+<div class="app-screen">
+  <div class="app-header"><span>FitTrack</span><div class="app-avatar">AL</div></div>
+  <div class="app-hero-card">
+    <h3>Bonjour, Alex 👋</h3>
+    <p>Tu as brûlé 1 240 kcal cette semaine</p>
+    <button class="app-start-btn" onclick="startW(this)">▶ Démarrer</button>
+  </div>
+  <div class="app-stats-row">
+    <div class="app-stat"><div class="val" id="steps">6 842</div><div class="lbl">Pas</div></div>
+    <div class="app-stat"><div class="val">47'</div><div class="lbl">Actif</div></div>
+    <div class="app-stat"><div class="val" id="kcal">412</div><div class="lbl">kcal</div></div>
+  </div>
+  <div class="app-stitle">Séances suggérées</div>
+  <div class="wlist">
+    <div class="wi" onclick="selW(this)"><div class="wi-ico" style="background:rgba(108,59,255,.15)">🏃</div><div class="wi-inf"><h5>Cardio 30 min</h5><p>Intensité modérée</p></div><div class="wi-kcal">~280 kcal</div></div>
+    <div class="wi" onclick="selW(this)"><div class="wi-ico" style="background:rgba(255,59,139,.15)">💪</div><div class="wi-inf"><h5>Full body</h5><p>Force & endurance</p></div><div class="wi-kcal">~350 kcal</div></div>
+    <div class="wi" onclick="selW(this)"><div class="wi-ico" style="background:rgba(0,229,195,.15)">🧘</div><div class="wi-inf"><h5>Yoga & Stretch</h5><p>Récupération active</p></div><div class="wi-kcal">~120 kcal</div></div>
+  </div>
+  <div class="app-nav-bar">
+    <div class="anav act"><div class="ico">🏠</div><span>Accueil</span></div>
+    <div class="anav" onclick="navT(this)"><div class="ico">📊</div><span>Stats</span></div>
+    <div class="anav" onclick="navT(this)"><div class="ico">🎯</div><span>Objectifs</span></div>
+    <div class="anav" onclick="navT(this)"><div class="ico">👤</div><span>Profil</span></div>
+  </div>
+</div>
+<div class="phone-home-bar"></div>
+</div></div>
+<script>
+function selW(el){document.querySelectorAll('.wi').forEach(w=>w.classList.remove('act'));el.classList.add('act');}
+function navT(el){document.querySelectorAll('.anav').forEach(n=>n.classList.remove('act'));el.classList.add('act');}
+let timer=null;
+function startW(btn){
+  if(timer){clearInterval(timer);window._demoTimer=null;btn.textContent='▶ Démarrer';btn.style.background='white';btn.style.color='#6C3BFF';timer=null;return;}
+  btn.textContent='⏸ Pause';btn.style.background='#00E5C3';btn.style.color='#0D0B1A';
+  let s=6842,k=412;
+  window._demoTimer=timer=setInterval(()=>{
+    s+=Math.floor(Math.random()*3)+1;k+=1;
+    document.getElementById('steps').textContent=s.toLocaleString('fr-FR');
+    document.getElementById('kcal').textContent=k;
+  },300);
+}
+<\/script>`
+  },
+  ecom:{
+    title:"🛒 Démo — Boutique Maison Céleste",
+    note:"Exemple de réalisation · Produits & prix fictifs à titre illustratif",
+    html:`<div class="demo-ecom">
+<div class="ec-nav">
+  <div class="ec-logo">Maison Céleste</div>
+  <input class="ec-search" placeholder="🔍 Rechercher..."/>
+  <button class="ec-cart-btn" id="ecart">🛒 Panier <span class="cbadge" id="cnt">0</span></button>
+</div>
+<div class="ec-hero">
+  <h2>✨ Bijoux artisanaux</h2>
+  <p>Pièces uniques faites à la main · Livraison offerte dès 80€</p>
+  <button class="ec-hero-btn">Découvrir</button>
+</div>
+<div class="ec-cats">
+  <button class="ec-cat act" onclick="ecFilter('all',this)">Tout</button>
+  <button class="ec-cat" onclick="ecFilter('collier',this)">Colliers</button>
+  <button class="ec-cat" onclick="ecFilter('bague',this)">Bagues</button>
+  <button class="ec-cat" onclick="ecFilter('bracelet',this)">Bracelets</button>
+</div>
+<div class="ec-prods" id="ec-prods">
+  <div class="ec-prod" data-cat="collier"><div class="ec-img">📿</div><div class="ec-info"><div class="ec-name">Collier Lunaire</div><div class="ec-price">48 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+  <div class="ec-prod" data-cat="bague"><div class="ec-img">💍</div><div class="ec-info"><div class="ec-name">Bague Solstice</div><div class="ec-price">62 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+  <div class="ec-prod" data-cat="bracelet"><div class="ec-img">📎</div><div class="ec-info"><div class="ec-name">Bracelet Étoile</div><div class="ec-price">35 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+  <div class="ec-prod" data-cat="collier"><div class="ec-img">🌙</div><div class="ec-info"><div class="ec-name">Collier Céleste</div><div class="ec-price">55 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+  <div class="ec-prod" data-cat="bague"><div class="ec-img">⭐</div><div class="ec-info"><div class="ec-name">Bague Cosmos</div><div class="ec-price">78 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+  <div class="ec-prod" data-cat="bracelet"><div class="ec-img">✨</div><div class="ec-info"><div class="ec-name">Bracelet Aurore</div><div class="ec-price">42 €</div><button class="ec-add" onclick="addC(this)">+ Ajouter</button></div></div>
+</div>
+<div class="ec-foot">© 2025 Maison Céleste · Paiement sécurisé 🔒</div>
+<script>
+let cart=0;
+function addC(btn){cart++;document.getElementById('cnt').textContent=cart;btn.textContent='✅';btn.style.background='#00E5C3';setTimeout(()=>{btn.textContent='+ Ajouter';btn.style.background='#6C3BFF';},1400);}
+function ecFilter(cat,btn){document.querySelectorAll('.ec-cat').forEach(b=>b.classList.remove('act'));btn.classList.add('act');document.querySelectorAll('.ec-prod').forEach(p=>{p.classList.toggle('hidden',cat!=='all'&&p.dataset.cat!==cat);});}
+<\/script></div>`
+  }
+};
+
+function openModal(type){
+  const d=demos[type];
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-note').textContent=d.note;
+  document.getElementById('modal-body').innerHTML=d.html;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+  // FIX: kill any running demo timers before clearing modal content
+  if(window._demoTimer){clearInterval(window._demoTimer);window._demoTimer=null;}
+  setTimeout(()=>{document.getElementById('modal-body').innerHTML='';},280);
+}
+function closeModalOut(e){if(e.target===document.getElementById('modal'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>
